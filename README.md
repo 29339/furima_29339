@@ -35,10 +35,10 @@
 
 ### Association
 
-- has_one :purchases
+- has_one :purchase
 - belongs_to :user
 
-#category、status、delivery_fee、shipping_address、delivery_dateはActiveHashを利用。
+#category_id、status_id、delivery_fee_id、shipping_address_id、delivery_date_idはActiveHashを利用。
 
 ## purchases テーブル
 
@@ -69,4 +69,4 @@
 
 - belongs_to :purchase
 
-#prefectureはActiveHashを利用。
+#prefecture_idはActiveHashを利用。
