@@ -11,38 +11,45 @@
 | first_name       | string  | null: false |
 | last_name_kana   | string  | null: false |
 | first_name_kana  | string  | null: false |
-| birth_year       | integer | null: false |
-| birth_month      | integer | null: false |
-| birth_day        | integer | null: false |
+| birth_year       | date    | null: false |
+| birth_month      | date    | null: false |
+| birth_day        | date    | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :purchases
 
+#birth_year,birth_month,birth_dayはActiveHashを利用。
+
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| item_image | text       | null: false                    |
-| items_name | string     | null: false                    |
-| item_story | text       | null: false                    |
-| price      | integer    | null: false                    |
-| user_id    | references | null: false, foreign_kyy: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| image            | text       | null: false                    |
+| name             | string     | null: false                    |
+| story            | text       | null: false                    |
+| category         | string     | null: false                    |
+| status           | string     | null: false                    |
+| delivery_fee     | string     | null: false                    |
+| shipping_address | string     | null: false                    |
+| delivery_date    | string     | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :purchases
 - belongs_to :users
 
-#カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数のデータははActiveHashを利用。
+#category、status、delivery_fee、shipping_address、delivery_dateはActiveHashを利用。
 
 ## purchases テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user_id | references | null: false, foreign_kyy: true |
-| item_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -54,18 +61,16 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| curd_number      | integer    | null: false                    |
-| card_limit_month | integer    | null: false                    |
-| card_security    | integer    | null: false                    |
-| post_number      | integer    | null: false                    |
+| post_number      | string     | null: false                    |
+| prefecture       | string     | null: false                    |
 | address          | string     | null: false,                   |
 | address_number   | integer    | null: false                    |
 | house_name       | string     |                                |
-| phone_number     | integer    | null: false                    |
-| purchase_id      | references | null: false, foreign_kyy: true |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :purchases
 
-#都道府県のデータはActiveHashを利用。
+#prefectureはActiveHashを利用。
