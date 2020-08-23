@@ -1,24 +1,72 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column           | Type    | Options     |
+| ---------------- | ------    ----------- |
+| nickname         | string  | null: false |
+| email            | string  | null: false |
+| password         | string  | null: false |
+| last_name        | string  | null: false |
+| first_name       | string  | null: false |
+| last_name_kana   | string  | null: false |
+| first_name_kana  | string  | null: false |
+| birth_day        | date    | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| image               | string     | null: false                    |
+| name                | string     | null: false                    |
+| story               | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| status_id           | integer    | null: false                    |
+| delivery_fee_id     | integer    | null: false                    |
+| shipping_address_id | integer    | null: false                    |
+| delivery_date_id    | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- has_one :purchase
+- belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
+#category_id、status_id、delivery_fee_id、shipping_address_id、delivery_date_idはActiveHashを利用。
 
-* Deployment instructions
+## purchases テーブル
 
-* ...
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### Association
+
+- has_one :purchases_data
+- belongs_to :user
+- belongs_to :item
+
+## purchases_data テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_number      | string     | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| address          | string     | null: false,                   |
+| address_number   | string     | null: false                    |
+| house_name       | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :purchase
+
+#prefecture_idはActiveHashを利用。
