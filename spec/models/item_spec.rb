@@ -62,10 +62,15 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include('Delivery date Select')
       end
-      it 'priceが299以下か10000000以上であれば登録できない' do
+      it 'priceが300未満であれば登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to  include('Price Half-width number')
+        expect(@item.errors.full_messages).to  include('Price Out of setting range')
+      end
+      it 'priceが10000000以上であれば登録できない' do
+        @item.price = '10000000'
+        @item.valid?
+        expect(@item.errors.full_messages).to  include('Price Out of setting range')
       end
     end
   end
