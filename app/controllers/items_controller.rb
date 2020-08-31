@@ -13,6 +13,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def index
+    @items = Item.all.order("id DESC")
+  end
+
   private
 
   def move_to_index
