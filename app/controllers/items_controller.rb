@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
   def new
     @item = Item.new
   end
@@ -13,6 +13,17 @@ class ItemsController < ApplicationController
     end
   end
 
+<<<<<<< Updated upstream
+=======
+  def index
+    @items = Item.all.order('id DESC')
+  end
+
+  def show
+    @items = Item.find(params[:id])
+  end
+
+>>>>>>> Stashed changes
   private
 
   def move_to_index
