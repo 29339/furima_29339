@@ -17,7 +17,6 @@ describe Item do
         @item.price = '1234'
         expect(@item.user).to be_valid
       end
-      
     end
 
     context '商品登録がうまくいかないとき' do
@@ -65,12 +64,12 @@ describe Item do
       it 'priceが300未満であれば登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages).to  include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it 'priceが10000000以上であれば登録できない' do
         @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to  include('Price Out of setting range')
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
     end
   end
