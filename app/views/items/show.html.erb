@@ -4,17 +4,9 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-<<<<<<< Updated upstream
-      <%= "商品名" %>
-    </h2>
-    <div class='item-img-content'>
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
-=======
       <%= @item.name %>
-    </h2>
     <div class='item-img-content'>
-      <%= image_tag @item.image ,class:"item-box-img" %>
->>>>>>> Stashed changes
+      <%= image_tag @items.image ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
@@ -23,11 +15,8 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-<<<<<<< Updated upstream
         ¥ 999,999,999
-=======
         <%= @item.price %>
->>>>>>> Stashed changes
       </span>
       <span class="item-postage">
         (税込) 送料込み
@@ -35,8 +24,6 @@
     </div>
 
     <%# ログインしているユーザと出品しているユーザが同一人物である時、商品の編集と削除を表示にしましょう%>
-<<<<<<< Updated upstream
-
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
@@ -45,39 +32,21 @@
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
+   <% if current_user == @items.user %> 
+     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
+     <p class='or-text'>or</p>
+     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
+    <% else %>
+      <%# 商品が売れていない場合はこちらを表示しましょう %>
+      <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+      <%# //商品が売れていない場合はこちらを表示しましょう %>
+    <% end %>
     <%# // ログインしているユーザと出品しているユーザが同一人物である時、商品の編集と削除を表示にしましょう %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @items.story %></span>
     </div>
     <table class="detail-table">
-      <tbody>
-        <tr>
-          <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
-        </tr>
-        <tr>
-          <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
-        </tr>
-      </tbody>
-=======
    <% if current_user == @item.user %> 
      <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
      <p class='or-text'>or</p>
@@ -119,7 +88,6 @@
             <td class="detail-value"><%= @item.delivery_date.name %></td>
           </tr>
         </tbody>
->>>>>>> Stashed changes
     </table>
     <div class="option">
       <div class="favorite-btn">
