@@ -13,8 +13,6 @@ class ItemsController < ApplicationController
     end
   end
 
-<<<<<<< Updated upstream
-=======
   def index
     @items = Item.all.order('id DESC')
   end
@@ -23,7 +21,6 @@ class ItemsController < ApplicationController
     @items = Item.find(params[:id])
   end
 
->>>>>>> Stashed changes
   private
 
   def move_to_index
