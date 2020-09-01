@@ -1,5 +1,11 @@
 class ItemsController < ApplicationController
+<<<<<<< Updated upstream
   before_action :move_to_index, except: [:index]
+=======
+  before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update]
+  
+>>>>>>> Stashed changes
   def new
     @item = Item.new
   end
@@ -17,6 +23,18 @@ class ItemsController < ApplicationController
     @items = Item.all.order("id DESC")
   end
 
+  def edit
+  end
+
+  def update
+    @item = Item.find(params[:id])
+     if @item.update(create_params)
+       redirect_to action: :show
+     else
+       render :edit
+     end
+  end
+
   private
 
   def move_to_index
@@ -26,4 +44,15 @@ class ItemsController < ApplicationController
   def create_params
     params.require(:item).permit(:image, :name, :story, :category_id, :status_id, :delivery_fee_id, :shipping_address_id, :delivery_date_id, :price).merge(user_id: current_user.id)
   end
+<<<<<<< Updated upstream
+=======
+
+  def update_params
+    params.require(:item).permit(:image, :name, :story, :category_id, :status_id, :delivery_fee_id, :shipping_address_id, :delivery_date_id, :price).merge(user_id: current_user.id) 
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+>>>>>>> Stashed changes
 end
