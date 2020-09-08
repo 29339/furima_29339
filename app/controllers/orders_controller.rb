@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
+    @order = UserOrder.new(user_order_params)
   end
 
   def create
