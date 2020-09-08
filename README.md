@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :order
 
 ## items テーブル
 
@@ -35,12 +35,12 @@
 
 ### Association
 
-- has_one :purchase
+- has_one :order
 - belongs_to :user
 
 #category_id、status_id、delivery_fee_id、shipping_address_id、delivery_date_idはActiveHashを利用。
 
-## purchases テーブル
+## order テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -49,24 +49,24 @@
 
 ### Association
 
-- has_one :purchases_data
+- has_one :order_data
 - belongs_to :user
 - belongs_to :item
 
-## purchases_data テーブル
+## order_data テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| post_number      | string     | null: false                    |
-| prefecture_id    | integer    | null: false                    |
-| address          | string     | null: false,                   |
-| address_number   | string     | null: false                    |
-| house_name       | string     |                                |
-| phone_number     | string     | null: false                    |
-| purchase         | references | null: false, foreign_key: true |
+| Column               | Type       | Options                        |
+| ---------------------| ---------- | ------------------------------ |
+| post_number          | string     | null: false                    |
+| shipping_address_id  | integer    | null: false                    |
+| address              | string     | null: false,                   |
+| address_number       | string     | null: false                    |
+| house_name           | string     |                                |
+| phone_number         | string     | null: false                    |
+| order                | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 
 #prefecture_idはActiveHashを利用。

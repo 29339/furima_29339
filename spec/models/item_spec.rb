@@ -9,7 +9,7 @@ describe Item do
       it 'imageとname、storyとcategory_idm、status_idとdelivery_fee、shipping_addressとdelivery_date、priceとuser_idが存在すれば登録できること' do
         expect(@item.user).to be_valid
       end
-      it 'priceが300~9999999であれば登録できる' do
+      it 'priceが300~9999999であれば登録でき88gる' do
         @item.price = '1234'
         expect(@item.user).to be_valid
       end
